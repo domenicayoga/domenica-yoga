@@ -1,0 +1,28 @@
+---
+import type { Lang } from '../data/locales';
+import { content } from '../data/locales';
+import { homePath, aboutPath, socialsFor } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const c = content[lang];
+const socials = socialsFor(lang);
+---
+<footer>
+  <div class="shell">
+    <div class="footer-top">
+      <div><div class="brand">DOMENICA YOGA</div><p class="footer-tag">{c.footer.tag}</p></div>
+      <div class="footer-links">
+        <a href={aboutPath(lang)}>{c.nav.about}</a>
+        <a href={`${homePath(lang)}#training`}>{c.nav.training}</a>
+        <a href={`${homePath(lang)}#course`}>{c.nav.course}</a>
+        <a href={`${homePath(lang)}#resources`}>{c.nav.resources}</a>
+      </div>
+      <div class="footer-links">
+        <a href={socials.instagram} target="_blank" rel="me noopener">Instagram ↗</a>
+        <a href={socials.telegram} target="_blank" rel="noopener">Telegram</a>
+        <a href="#">{c.footer.legal}</a>
+        <a href="#">{c.footer.terms}</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Domenica Yoga</span><span>EN · FR · UA</span></div>
+  </div>
+</footer>

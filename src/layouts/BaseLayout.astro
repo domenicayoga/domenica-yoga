@@ -1,21 +1,40 @@
 ---
 import '../styles/global.css';
 import { localeMeta, type Lang } from '../data/locales';
+import { socialsFor } from '../data/site';
 
 interface Props {
   lang: Lang;
   title: string;
   description: string;
+  canonicalPath?: string;
+  alternatePaths?: { en: string; fr: string; ua: string };
+  ogImage?: string;
+  pageType?: 'website' | 'profile';
 }
-const { lang, title, description } = Astro.props;
-const base = Astro.site ?? new URL('https://example.com');
-const canonical = new URL(`/${lang}/`, base);
+const {
+  lang,
+  title,
+  description,
+  canonicalPath = `/${lang}/`,
+  alternatePaths = { en:'/en/', fr:'/fr/', ua:'/ua/' },
+  ogImage = '/assets/og-domenica.jpg',
+  pageType = 'website'
+} = Astro.props;
+const base = Astro.site ?? new URL('https://domenicayoga.com');
+const canonical = new URL(canonicalPath, base);
 const alternates = {
-  en: new URL('/en/', base),
-  fr: new URL('/fr/', base),
-  ua: new URL('/ua/', base)
+  en: new URL(alternatePaths.en, base),
+  fr: new URL(alternatePaths.fr, base),
+  ua: new URL(alternatePaths.ua, base)
 };
 const meta = localeMeta[lang];
+const socials = socialsFor(lang);
+const personJob = lang === 'fr'
+  ? 'Professeure de yoga et spécialiste du mouvement'
+  : lang === 'ua'
+    ? 'Інструкторка йоги та спеціалістка з руху'
+    : 'Yoga teacher and movement specialist';
 ---
 <!doctype html>
 <html lang={meta.code}>
@@ -24,28 +43,49 @@ const meta = localeMeta[lang];
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="theme-color" content="#f2efe8" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#455a43" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="canonical" href={canonical} />
   <link rel="alternate" hreflang="en" href={alternates.en} />
   <link rel="alternate" hreflang="fr" href={alternates.fr} />
   <link rel="alternate" hreflang="uk" href={alternates.ua} />
   <link rel="alternate" hreflang="x-default" href={alternates.en} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={pageType} />
+  <meta property="og:site_name" content="Domenica Yoga" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
   <meta property="og:locale" content={meta.ogLocale} />
-  <meta property="og:image" content={new URL('/assets/hero.webp', base)} />
+  <meta property="og:image" content={new URL(ogImage, base)} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Domenica Yoga — yoga and intelligent movement by the Atlantic Ocean" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={new URL('/assets/hero.webp', base)} />
+  <meta name="twitter:image" content={new URL(ogImage, base)} />
   <script type="application/ld+json" set:html={JSON.stringify({
     '@context':'https://schema.org',
-    '@type':'Person',
-    name:'Domenica',
-    url: canonical.href,
-    jobTitle: lang === 'fr' ? 'Professeure de yoga et spécialiste du mouvement' : lang === 'ua' ? 'Інструкторка йоги та спеціалістка з руху' : 'Yoga teacher and movement specialist'
+    '@graph':[
+      {
+        '@type':'WebSite',
+        '@id':`${base.href}#website`,
+        url:base.href,
+        name:'Domenica Yoga',
+        inLanguage:['en','fr','uk']
+      },
+      {
+        '@type':'Person',
+        '@id':`${base.href}#domenica`,
+        name:'Domenica',
+        url:canonical.href,
+        jobTitle:personJob,
+        sameAs:[socials.instagram, socials.telegram]
+      }
+    ]
   })} />
 </head>
 <body><slot /></body>

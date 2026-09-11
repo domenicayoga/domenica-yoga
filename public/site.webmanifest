@@ -1,0 +1,9 @@
+{
+  "name": "Domenica Yoga",
+  "short_name": "Domenica Yoga",
+  "start_url": "/en/",
+  "display": "standalone",
+  "background_color": "#f2efe8",
+  "theme_color": "#455a43",
+  "icons": [{"src":"/apple-touch-icon.png","sizes":"180x180","type":"image/png"}]
+}

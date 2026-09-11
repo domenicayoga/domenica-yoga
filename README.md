@@ -1,42 +1,32 @@
-# Domenica Yoga — Astro v0.2
+# Domenica Yoga — Astro v0.3
 
-Production-oriented static Astro project with EN / FR / UA homepages.
+Production-oriented static Astro site for Domenica Yoga with English, French and Ukrainian versions.
 
-## Local preview
+## v0.3 adds
+- full multilingual About Domenica page
+- favicon + Apple touch icon + web manifest
+- 1200×630 Open Graph / social preview image
+- stronger canonical/hreflang/OG/Twitter metadata
+- WebSite + Person structured data
+- robots.txt + sitemap reference
+- Instagram link wired in
+- shared header/footer components
 
-```bash
-npm install
-npm run dev
-```
+## Routes
+- `/en/`, `/fr/`, `/ua/`
+- `/en/about/`
+- `/fr/a-propos/`
+- `/ua/pro-mene/`
 
-## Build
-
-```bash
-SITE_URL=https://YOUR-DOMAIN.example npm run build
-```
-
-## Cloudflare Workers deployment
-
-The project is configured for Cloudflare Workers Static Assets.
-
-```bash
-npm install
-SITE_URL=https://YOUR-DOMAIN.example npm run build
-npx wrangler login
-npx wrangler deploy
-```
-
-For Git-based deployment in Cloudflare Workers Builds:
+## Build / Cloudflare Workers
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
-- Environment variable: `SITE_URL=https://YOUR-DOMAIN`
+- Environment variable: `SITE_URL=https://domenicayoga.com`
 
-## Fonts
+## Important before final launch
+- replace the Telegram placeholder in `src/data/site.ts` with the exact Telegram URL
+- replace placeholder testimonials with verified client reviews
+- add final legal/privacy pages
+- add Group / 1:1 / Course / Resources pages
 
-The CSS is prepared for Favorit (`FavoritC`, `Favorit Book`) but font binaries are intentionally not included in this package. Add your licensed webfont files under `public/fonts/` and add the corresponding `@font-face` declarations in `src/styles/global.css` before production.
-
-## Next content steps
-- replace placeholder testimonial quotes with real client reviews
-- add final Instagram and Telegram URLs
-- build About / Group / 1:1 / Course / Resources pages
-- add French legal pages (Mentions légales + privacy)
+Favorit font files are intentionally not included in this distributable package. The CSS retains the Favorit family name with system fallbacks.

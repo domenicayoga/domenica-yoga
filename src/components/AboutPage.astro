@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import { type Lang } from '../data/locales';
+import { aboutContent } from '../data/about';
+import { aboutAlternates, aboutPath, homePath } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const a = aboutContent[lang];
+const alt = lang === 'fr' ? 'Domenica, professeure de yoga au bord de l’océan Atlantique' : lang === 'ua' ? 'Доменіка, інструкторка йоги біля Атлантичного океану' : 'Domenica, yoga teacher by the Atlantic Ocean';
+---
+<BaseLayout lang={lang} title={a.title} description={a.description} canonicalPath={aboutPath(lang)} alternatePaths={aboutAlternates} pageType="profile">
+  <SiteHeader lang={lang} active="about" />
+  <main class="about-page">
+    <section class="about-hero-page">
+      <div class="shell about-hero-grid">
+        <div class="about-hero-copy"><div class="eyebrow">{a.eyebrow}</div><h1>{a.hero}</h1><p class="lead">{a.lead}</p></div>
+        <div class="about-hero-image"><img src="/assets/about-portrait.webp" alt={alt} /></div>
+      </div>
+    </section>
+
+    <section class="about-story"><div class="shell story-grid">
+      <div class="story-image"><img src="/assets/about-movement.webp" alt={alt} loading="lazy" /></div>
+      <div class="story-copy"><h2>{a.introTitle}</h2>{a.intro.map((p)=><p>{p}</p>)}</div>
+    </div></section>
+
+    <section class="about-values"><div class="shell"><div class="eyebrow">Domenica Yoga</div><h2>{a.valuesTitle}</h2><div class="value-grid">{a.values.map((v,i)=><article class="value-card"><span class="value-num">0{i+1}</span><h3>{v[0]}</h3><p>{v[1]}</p></article>)}</div></div></section>
+
+    <section class="about-approach"><div class="shell approach-grid">
+      <div><div class="eyebrow">Approach</div><h2>{a.approachTitle}</h2><p>{a.approach}</p></div>
+      <div class="practical-card"><h3>{a.practicalTitle}</h3><ul>{a.practical.map((x)=><li>{x}</li>)}</ul></div>
+    </div></section>
+
+    <section class="about-photo-strip"><div class="shell photo-strip"><div><img src="/assets/about-smile.webp" alt={alt} loading="lazy" /></div><div class="strip-copy"><h2>{a.closeTitle}</h2><p>{a.closeText}</p><a class="btn primary" href={`${homePath(lang)}#training`}>{a.closeButton}</a></div></div></section>
+  </main>
+  <SiteFooter lang={lang} />
+</BaseLayout>
