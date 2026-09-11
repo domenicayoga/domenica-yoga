@@ -4,7 +4,7 @@ import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import { type Lang } from '../data/locales';
 import { aboutContent } from '../data/about';
-import { aboutAlternates, aboutPath, homePath } from '../data/site';
+import { aboutAlternates, aboutPath, groupPath } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const a = aboutContent[lang];
 const alt = lang === 'fr' ? 'Domenica, professeure de yoga au bord de l’océan Atlantique' : lang === 'ua' ? 'Доменіка, інструкторка йоги біля Атлантичного океану' : 'Domenica, yoga teacher by the Atlantic Ocean';
@@ -15,12 +15,12 @@ const alt = lang === 'fr' ? 'Domenica, professeure de yoga au bord de l’océan
     <section class="about-hero-page">
       <div class="shell about-hero-grid">
         <div class="about-hero-copy"><div class="eyebrow">{a.eyebrow}</div><h1>{a.hero}</h1><p class="lead">{a.lead}</p></div>
-        <div class="about-hero-image"><img src="/assets/about-portrait.webp" alt={alt} /></div>
+        <div class="about-hero-image"><img src="/assets/about-portrait-v04.webp" alt={alt} /></div>
       </div>
     </section>
 
     <section class="about-story"><div class="shell story-grid">
-      <div class="story-image"><img src="/assets/about-movement.webp" alt={alt} loading="lazy" /></div>
+      <div class="story-image"><img src="/assets/about-movement-v04.webp" alt={alt} loading="lazy" /></div>
       <div class="story-copy"><h2>{a.introTitle}</h2>{a.intro.map((p)=><p>{p}</p>)}</div>
     </div></section>
 
@@ -31,7 +31,7 @@ const alt = lang === 'fr' ? 'Domenica, professeure de yoga au bord de l’océan
       <div class="practical-card"><h3>{a.practicalTitle}</h3><ul>{a.practical.map((x)=><li>{x}</li>)}</ul></div>
     </div></section>
 
-    <section class="about-photo-strip"><div class="shell photo-strip"><div><img src="/assets/about-smile.webp" alt={alt} loading="lazy" /></div><div class="strip-copy"><h2>{a.closeTitle}</h2><p>{a.closeText}</p><a class="btn primary" href={`${homePath(lang)}#training`}>{a.closeButton}</a></div></div></section>
+    <section class="about-photo-strip"><div class="shell photo-strip"><div><img src="/assets/about-smile-v04.webp" alt={alt} loading="lazy" /></div><div class="strip-copy"><h2>{a.closeTitle}</h2><p>{a.closeText}</p><a class="btn primary" href={groupPath(lang)}>{a.closeButton}</a></div></div></section>
   </main>
   <SiteFooter lang={lang} />
 </BaseLayout>

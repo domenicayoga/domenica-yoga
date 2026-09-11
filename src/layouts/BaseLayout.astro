@@ -11,6 +11,7 @@ interface Props {
   alternatePaths?: { en: string; fr: string; ua: string };
   ogImage?: string;
   pageType?: 'website' | 'profile';
+  extraSchema?: Record<string, any>;
 }
 const {
   lang,
@@ -18,8 +19,9 @@ const {
   description,
   canonicalPath = `/${lang}/`,
   alternatePaths = { en:'/en/', fr:'/fr/', ua:'/ua/' },
-  ogImage = '/assets/og-domenica.jpg',
-  pageType = 'website'
+  ogImage = '/assets/og-domenica-v04.jpg',
+  pageType = 'website',
+  extraSchema
 } = Astro.props;
 const base = Astro.site ?? new URL('https://domenicayoga.com');
 const canonical = new URL(canonicalPath, base);
@@ -35,6 +37,11 @@ const personJob = lang === 'fr'
   : lang === 'ua'
     ? 'Інструкторка йоги та спеціалістка з руху'
     : 'Yoga teacher and movement specialist';
+const graph:any[] = [
+  { '@type':'WebSite','@id':`${base.href}#website`,url:base.href,name:'Domenica Yoga',inLanguage:['en','fr','uk'] },
+  { '@type':'Person','@id':`${base.href}#domenica`,name:'Domenica',url:base.href,jobTitle:personJob,sameAs:[socials.instagram,socials.telegram] }
+];
+if (extraSchema) graph.push(extraSchema);
 ---
 <!doctype html>
 <html lang={meta.code}>
@@ -62,31 +69,12 @@ const personJob = lang === 'fr'
   <meta property="og:image" content={new URL(ogImage, base)} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Domenica Yoga — yoga and intelligent movement by the Atlantic Ocean" />
+  <meta property="og:image:alt" content="Domenica Yoga — yoga, strength and intelligent movement by the Atlantic Ocean" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={new URL(ogImage, base)} />
-  <script type="application/ld+json" set:html={JSON.stringify({
-    '@context':'https://schema.org',
-    '@graph':[
-      {
-        '@type':'WebSite',
-        '@id':`${base.href}#website`,
-        url:base.href,
-        name:'Domenica Yoga',
-        inLanguage:['en','fr','uk']
-      },
-      {
-        '@type':'Person',
-        '@id':`${base.href}#domenica`,
-        name:'Domenica',
-        url:canonical.href,
-        jobTitle:personJob,
-        sameAs:[socials.instagram, socials.telegram]
-      }
-    ]
-  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@graph':graph})} />
 </head>
 <body><slot /></body>
 </html>

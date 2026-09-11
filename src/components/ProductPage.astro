@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import type { Lang } from '../data/locales';
+import { products, type ProductKey } from '../data/products';
+import { pathForPage, groupAlternates, individualAlternates, courseAlternates, socialsFor } from '../data/site';
+const { lang, product } = Astro.props as { lang: Lang; product: ProductKey };
+const p = products[lang][product];
+const socials = socialsFor(lang);
+const alternates = product === 'group' ? groupAlternates : product === 'individual' ? individualAlternates : courseAlternates;
+const primaryHref = lang === 'ua' ? socials.telegram : socials.whatsapp;
+const secondaryHref = lang === 'ua' ? socials.instagram : socials.telegram;
+const canonicalPath = pathForPage(lang, product);
+const serviceType = product === 'group' ? 'Group yoga classes' : product === 'individual' ? 'Individual yoga and movement sessions' : 'Recorded yoga and movement course';
+const currency = product === 'group' && lang === 'ua' ? 'UAH' : 'EUR';
+const numericPrice = product === 'group' ? (lang === 'ua' ? '1500' : '50') : product === 'individual' ? '40' : '49';
+const serviceSchema = {
+  '@type':'Service',
+  name:p.hero,
+  serviceType,
+  provider:{'@id':'https://domenicayoga.com/#domenica'},
+  areaServed:'Online',
+  offers:{'@type':'Offer',price:numericPrice,priceCurrency:currency,url:`https://domenicayoga.com${canonicalPath}`}
+};
+const alt = lang === 'fr' ? 'Domenica en pratique de yoga au bord de l’océan Atlantique' : lang === 'ua' ? 'Доменіка практикує йогу біля Атлантичного океану' : 'Domenica practicing yoga by the Atlantic Ocean';
+---
+<BaseLayout lang={lang} title={p.title} description={p.description} canonicalPath={canonicalPath} alternatePaths={alternates} ogImage="/assets/og-domenica-v04.jpg" extraSchema={serviceSchema}>
+  <SiteHeader lang={lang} active={product} />
+  <main class="product-page">
+    <section class="product-hero">
+      <div class="shell product-hero-grid">
+        <div class="product-hero-copy">
+          <div class="eyebrow">{p.eyebrow}</div>
+          {p.badge && <div class="product-badge">{p.badge}</div>}
+          <h1>{p.hero}</h1>
+          <p class="lead">{p.lead}</p>
+          <div class="product-price-line"><strong>{p.price}</strong><span>{p.priceNote}</span></div>
+          <div class="actions"><a class="btn primary" href={primaryHref} target="_blank" rel="noopener">{p.ctaPrimary} ↗</a><a class="btn" href="#details">{lang==='fr'?'Voir les détails':lang==='ua'?'Подивитися деталі':'See details'}</a></div>
+        </div>
+        <div class="product-hero-image"><img src={p.heroImage} alt={alt} /></div>
+      </div>
+    </section>
+
+    <section class="product-facts" id="details"><div class="shell fact-grid">{p.facts.map(([k,v])=><div class="fact"><span>{k}</span><strong>{v}</strong></div>)}</div></section>
+
+    <section class="product-fit"><div class="shell split-copy-media">
+      <div><div class="eyebrow">Domenica Yoga</div><h2>{p.forYouTitle}</h2><div class="bullet-list">{p.forYou.map(x=><div class="bullet">{x}</div>)}</div></div>
+      <div class="product-detail-image"><img src={p.detailImage} alt={alt} loading="lazy" /></div>
+    </div></section>
+
+    <section class="product-includes"><div class="shell includes-grid"><div><div class="eyebrow">{p.eyebrow}</div><h2>{p.includesTitle}</h2></div><div class="include-list">{p.includes.map((x,i)=><div class="include-item"><span>0{i+1}</span><p>{x}</p></div>)}</div></div></section>
+
+    {p.schedule && <section class="schedule-section"><div class="shell"><div class="eyebrow">Live schedule</div><h2>{p.scheduleTitle}</h2><div class="schedule-grid">{p.schedule.map(([day,time])=><div class="schedule-card"><span>{day}</span><strong>{time}</strong></div>)}</div></div></section>}
+
+    <section class="product-process"><div class="shell"><div class="eyebrow">Process</div><h2>{p.processTitle}</h2><div class="steps">{p.process.map(([title,text],i)=><div class="step"><div class="num">0{i+1}</div><h3>{title}</h3><p>{text}</p></div>)}</div></div></section>
+
+    <section class="pricing-section"><div class="shell"><div class="eyebrow">Pricing</div><h2>{p.pricingTitle}</h2><div class:list={["pricing-grid", p.plans.length===1 && "single"]}>{p.plans.map(plan=><article class="price-card"><h3>{plan.name}</h3><div class="big-price">{plan.price}</div><p>{plan.note}</p><a class="btn primary" href={primaryHref} target="_blank" rel="noopener">{p.ctaPrimary}</a></article>)}</div></div></section>
+
+    <section class="faq-section"><div class="shell faq-grid"><div><div class="eyebrow">FAQ</div><h2>{p.faqTitle}</h2><p class="fine-note">{p.note}</p></div><div class="faq-list">{p.faq.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</div></div></section>
+
+    <section class="product-cta"><div class="shell"><h2>{p.ctaTitle}</h2><p>{p.ctaText}</p><div class="actions"><a class="btn light" href={primaryHref} target="_blank" rel="noopener">{p.ctaPrimary} ↗</a><a class="btn light" href={secondaryHref} target="_blank" rel="noopener">{p.ctaSecondary} ↗</a></div></div></section>
+  </main>
+  <SiteFooter lang={lang} />
+</BaseLayout>

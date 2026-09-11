@@ -1,18 +1,18 @@
 ---
 import type { Lang } from '../data/locales';
 import { content } from '../data/locales';
-import { homePath, aboutPath } from '../data/site';
-const { lang, active = '' } = Astro.props as { lang: Lang; active?: 'about' | '' };
+import { homePath, aboutPath, groupPath, individualPath, coursePath, pathForPage, type PageKey } from '../data/site';
+const { lang, active = 'home' } = Astro.props as { lang: Lang; active?: PageKey };
 const c = content[lang];
-const languageTarget = (l: Lang) => active === 'about' ? aboutPath(l) : homePath(l);
+const languageTarget = (l: Lang) => pathForPage(l, active);
 ---
 <header class="site-header">
   <div class="shell"><nav>
     <a class="brand" href={homePath(lang)}>DOMENICA YOGA</a>
     <div class="navlinks">
       <a class:list={[active==='about' && 'active']} href={aboutPath(lang)}>{c.nav.about}</a>
-      <a href={`${homePath(lang)}#training`}>{c.nav.training}</a>
-      <a href={`${homePath(lang)}#course`}>{c.nav.course}</a>
+      <a class:list={[(active==='group'||active==='individual') && 'active']} href={groupPath(lang)}>{c.nav.training}</a>
+      <a class:list={[active==='course' && 'active']} href={coursePath(lang)}>{c.nav.course}</a>
       <a href={`${homePath(lang)}#resources`}>{c.nav.resources}</a>
       <a href={`${homePath(lang)}#contact`}>{c.nav.contact}</a>
     </div>
