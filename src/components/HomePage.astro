@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
 import { content, type Lang } from '../data/locales';
-import { aboutPath, groupPath, individualPath, coursePath, homeAlternates, socialsFor, primaryContact } from '../data/site';
+import { aboutPath, groupPath, individualPath, coursePath, resourcesPath, contactPath, homeAlternates, socialsFor, primaryContact } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const c = content[lang];
 const socials = socialsFor(lang);
@@ -36,11 +36,17 @@ const altNames = { en:'Domenica practicing yoga by the Atlantic Ocean', fr:'Dome
 
   <section class="method"><div class="shell"><div class="eyebrow">{c.method.eyebrow}</div><h2>{c.method.title}</h2><div class="steps">{c.method.items.map((s,i)=><div class="step"><div class="num">0{i+1}</div><h3>{s[0]}</h3><p>{s[1]}</p></div>)}</div></div></section>
 
-  <section class="testimonials"><div class="shell testimonial-grid"><div><div class="eyebrow">{c.testimonials.eyebrow}</div><h2>{c.testimonials.title}</h2></div>{c.testimonials.items.map((q,i)=><div class="quote"><span class="outcome-num">0{i+1}</span><p>{q}</p></div>)}</div></section>
+  <section class="testimonials"><div class="shell">
+    <div class="outcome-heading"><div class="eyebrow">{c.testimonials.eyebrow}</div><h2>{c.testimonials.title}</h2></div>
+    <div class="outcome-grid">{c.testimonials.items.map((q,i)=><article class="outcome-card"><span class="outcome-num">0{i+1}</span><p>{q}</p></article>)}</div>
+  </div></section>
 
-  <section class="resources" id="resources"><div class="shell resource-layout"><div><div class="eyebrow">{c.resources.eyebrow}</div><h2>{c.resources.title}</h2><p>{c.resources.text}</p><span class="text-link muted-link">{c.resources.all}</span></div><div class="resource-grid">{c.resources.items.map((r,i)=><article class="resource-card"><div class="resource-img"><img src={resourceImgs[i]} alt={altNames[lang]} loading="lazy" /></div><div class="resource-copy"><h3>{r}</h3><small>{lang==='fr'?'Guide · bientôt':lang==='ua'?'Гайд · скоро':'Guide · coming soon'}</small></div></article>)}</div></div></section>
+  <section class="resources" id="resources"><div class="shell">
+    <div class="resource-heading"><div class="eyebrow">{c.resources.eyebrow}</div><h2>{c.resources.title}</h2><p>{c.resources.text}</p><a class="text-link muted-link" href={resourcesPath(lang)}>{c.resources.all} →</a></div>
+    <div class="resource-grid resource-grid-balanced">{c.resources.items.map((r,i)=><article class="resource-card"><div class="resource-img"><img class:list={[i===2 && 'mirror-image']} src={resourceImgs[i]} alt={altNames[lang]} loading="lazy" /></div><div class="resource-copy"><h3>{r}</h3><small>{lang==='fr'?'Guide · bientôt':lang==='ua'?'Гайд · скоро':'Guide · coming soon'}</small></div></article>)}</div>
+  </div></section>
 
-  <section class="final-cta final-cta-v04" id="contact"><div class="bg"></div><div class="shell"><h2>{c.final.title}</h2><p>{c.final.text}</p><div class="actions"><a class="btn light" href={contact.href} target="_blank" rel="noopener">{c.final.button} — {contact.label} ↗</a><a class="btn light" href={socials.instagram} target="_blank" rel="noopener">Instagram ↗</a></div></div></section>
+  <section class="final-cta final-cta-v04" id="contact"><div class="bg"></div><div class="shell"><h2>{c.final.title}</h2><p>{c.final.text}</p><div class="actions"><a class="btn light" href={contact.href} target="_blank" rel="noopener">{c.final.button} — {contact.label} ↗</a><a class="btn light" href={contactPath(lang)}>Contact</a></div></div></section>
 </main>
 <SiteFooter lang={lang} />
 </BaseLayout>

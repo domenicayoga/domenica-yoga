@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import type { Lang } from '../data/locales';
+import { utilityPages } from '../data/utilityPages';
+import { resourcesPath, resourcesAlternates, contactPath } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const r = utilityPages[lang].resources;
+const imgs = ['/assets/resource1-v04.webp','/assets/resource2-v04.webp','/assets/resource3-v04.webp'];
+const alt = lang === 'fr' ? 'Domenica en mouvement au bord de l’océan Atlantique' : lang === 'ua' ? 'Доменіка в русі біля Атлантичного океану' : 'Domenica moving by the Atlantic Ocean';
+---
+<BaseLayout lang={lang} title={r.title} description={r.description} canonicalPath={resourcesPath(lang)} alternatePaths={resourcesAlternates}>
+  <SiteHeader lang={lang} active="resources" />
+  <main class="utility-page">
+    <section class="utility-hero"><div class="shell narrow-head"><div class="eyebrow">{r.eyebrow}</div><h1>{r.hero}</h1><p class="lead">{r.lead}</p></div></section>
+    <section class="resource-library"><div class="shell"><div class="resource-grid resource-grid-balanced utility-resources">
+      {r.articles.map((a,i)=><article class="resource-card"><div class="resource-img"><img class:list={[i===2 && 'mirror-image']} src={imgs[i]} alt={alt} loading="lazy" /></div><div class="resource-copy"><span class="mini-label">{lang==='fr'?'Guide':lang==='ua'?'Гайд':'Guide'} 0{i+1}</span><h2>{a[0]}</h2><p>{a[1]}</p></div></article>)}
+    </div><p class="coming-note">{r.coming}</p></div></section>
+    <section class="utility-cta"><div class="shell"><h2>{r.cta}</h2><p>{r.ctaText}</p><a class="btn light" href={contactPath(lang)}>{lang==='fr'?'Me contacter':lang==='ua'?'Написати мені':'Contact me'} →</a></div></section>
+  </main>
+  <SiteFooter lang={lang} />
+</BaseLayout>

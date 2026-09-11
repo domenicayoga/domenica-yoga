@@ -1,7 +1,7 @@
 ---
 import type { Lang } from '../data/locales';
 import { content } from '../data/locales';
-import { homePath, aboutPath, groupPath, individualPath, coursePath, pathForPage, type PageKey } from '../data/site';
+import { homePath, aboutPath, groupPath, coursePath, resourcesPath, contactPath, pathForPage, type PageKey } from '../data/site';
 const { lang, active = 'home' } = Astro.props as { lang: Lang; active?: PageKey };
 const c = content[lang];
 const languageTarget = (l: Lang) => pathForPage(l, active);
@@ -13,8 +13,8 @@ const languageTarget = (l: Lang) => pathForPage(l, active);
       <a class:list={[active==='about' && 'active']} href={aboutPath(lang)}>{c.nav.about}</a>
       <a class:list={[(active==='group'||active==='individual') && 'active']} href={groupPath(lang)}>{c.nav.training}</a>
       <a class:list={[active==='course' && 'active']} href={coursePath(lang)}>{c.nav.course}</a>
-      <a href={`${homePath(lang)}#resources`}>{c.nav.resources}</a>
-      <a href={`${homePath(lang)}#contact`}>{c.nav.contact}</a>
+      <a class:list={[active==='resources' && 'active']} href={resourcesPath(lang)}>{c.nav.resources}</a>
+      <a class:list={[active==='contact' && 'active']} href={contactPath(lang)}>{c.nav.contact}</a>
     </div>
     <div class="lang" aria-label="Language switcher">
       {(['en','fr','ua'] as Lang[]).map((l) => <a class:list={[l===lang && 'active']} href={languageTarget(l)}>{l==='ua'?'UA':l.toUpperCase()}</a>)}

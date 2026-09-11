@@ -1,29 +1,28 @@
 ---
 import type { Lang } from '../data/locales';
 import { content } from '../data/locales';
-import { aboutPath, groupPath, individualPath, coursePath, socialsFor } from '../data/site';
+import { aboutPath, groupPath, coursePath, resourcesPath, contactPath, socialsFor } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const c = content[lang];
 const socials = socialsFor(lang);
 ---
 <footer>
-  <div class="shell">
-    <div class="footer-top">
-      <div><div class="brand">DOMENICA YOGA</div><p class="footer-tag">{c.footer.tag}</p></div>
-      <div class="footer-links">
+  <div class="shell compact-footer">
+    <div class="footer-main">
+      <div class="footer-brand"><div class="brand">DOMENICA YOGA</div><span>{c.footer.tag}</span></div>
+      <div class="footer-inline-links">
         <a href={aboutPath(lang)}>{c.nav.about}</a>
-        <a href={groupPath(lang)}>{lang==='fr'?'Cours collectifs':lang==='ua'?'Групові тренування':'Group training'}</a>
-        <a href={individualPath(lang)}>1:1</a>
+        <a href={groupPath(lang)}>{c.nav.training}</a>
         <a href={coursePath(lang)}>{c.nav.course}</a>
+        <a href={resourcesPath(lang)}>{c.nav.resources}</a>
+        <a href={contactPath(lang)}>{c.nav.contact}</a>
       </div>
-      <div class="footer-links">
+      <div class="footer-socials">
         <a href={socials.instagram} target="_blank" rel="me noopener">Instagram ↗</a>
         <a href={socials.telegram} target="_blank" rel="noopener">Telegram ↗</a>
         {(lang==='en'||lang==='fr') && <a href={socials.whatsapp} target="_blank" rel="noopener">WhatsApp ↗</a>}
-        <a href="#">{c.footer.legal}</a>
-        <a href="#">{c.footer.terms}</a>
       </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Domenica Yoga</span><span>EN · FR · UA</span></div>
+    <div class="footer-bottom compact"><span>© 2026 Domenica Yoga</span><span>{c.footer.legal} · {c.footer.terms}</span><span>EN · FR · UA</span></div>
   </div>
 </footer>

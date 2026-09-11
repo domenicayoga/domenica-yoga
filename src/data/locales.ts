@@ -56,10 +56,10 @@ export const content = {
       ['Practice intelligently','Movements are adapted instead of forcing one universal version.'],
       ['Build capacity','We progressively develop strength, mobility, control and confidence.']
     ]},
-    testimonials:{eyebrow:'What we build',title:'Progress that makes sense outside the mat.',items:[
-      'More confidence in everyday movement and less fear around “wrong” positions.',
-      'Strength that supports mobility instead of fighting against it.',
-      'Enough body awareness to notice what helps, what does not, and when to adapt.'
+    testimonials:{eyebrow:'What we build',title:'Confidence. Strength. Body awareness.',items:[
+      'More confidence in everyday movement.',
+      'Strength that supports mobility.',
+      'Body awareness to know when to adapt.'
     ]},
     resources:{eyebrow:'Resources',title:'Understand your body better.',text:'Practical explanations and movement education — without the yoga mystique.',all:'Articles are coming next',items:[
       'Why the lower back can feel overloaded in Upward Facing Dog',
@@ -118,10 +118,10 @@ export const content = {
       ['Pratiquer intelligemment','Les mouvements s’adaptent à vous, pas l’inverse.'],
       ['Développer vos capacités','Nous construisons progressivement force, mobilité, contrôle et confiance.']
     ]},
-    testimonials:{eyebrow:'Ce que nous construisons',title:'Des progrès utiles en dehors du tapis.',items:[
-      'Plus de confiance dans les mouvements du quotidien et moins de peur des “mauvaises” positions.',
-      'Une force qui soutient la mobilité au lieu de s’y opposer.',
-      'Assez de conscience corporelle pour reconnaître ce qui aide et quand adapter.'
+    testimonials:{eyebrow:'Ce que nous construisons',title:'Confiance. Force. Conscience du corps.',items:[
+      'Plus de confiance dans les mouvements du quotidien.',
+      'Une force qui soutient la mobilité.',
+      'Une conscience corporelle pour savoir quand adapter.'
     ]},
     resources:{eyebrow:'Ressources',title:'Mieux comprendre votre corps.',text:'Des explications pratiques et de l’éducation au mouvement — sans mystique inutile.',all:'Les articles arrivent bientôt',items:[
       'Pourquoi le bas du dos peut être surchargé en Chien tête en haut',
@@ -180,10 +180,10 @@ export const content = {
       ['Практикувати розумно','Рух адаптується під тебе, а не ти під один “правильний” варіант.'],
       ['Нарощувати можливості','Поступово додаємо силу, мобільність, контроль та впевненість.']
     ]},
-    testimonials:{eyebrow:'Що ми будуємо',title:'Прогрес, який відчувається поза килимком.',items:[
-      'Більше впевненості в повсякденному русі й менше страху “неправильної” пози.',
-      'Силу, яка підтримує мобільність, а не заважає їй.',
-      'Достатнє відчуття тіла, щоб розуміти, що допомагає і коли варто адаптувати рух.'
+    testimonials:{eyebrow:'Що ми будуємо',title:'Впевненість. Сила. Відчуття тіла.',items:[
+      'Більше впевненості у повсякденному русі.',
+      'Сила, що підтримує мобільність.',
+      'Відчуття тіла, щоб знати, коли адаптувати рух.'
     ]},
     resources:{eyebrow:'Матеріали',title:'Краще розумій своє тіло.',text:'Практичні пояснення та освіта про рух — без зайвої містики.',all:'Статті скоро з’являться',items:[
       'Чому поперек може перевантажуватись у собаці мордою вгору',

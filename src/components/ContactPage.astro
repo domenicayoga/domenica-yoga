@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import type { Lang } from '../data/locales';
+import { utilityPages } from '../data/utilityPages';
+import { contactPath, contactAlternates, socialsFor, groupPath, individualPath, coursePath } from '../data/site';
+const { lang } = Astro.props as { lang: Lang };
+const c = utilityPages[lang].contact;
+const s = socialsFor(lang);
+const primary = lang === 'ua' ? s.telegram : s.whatsapp;
+const secondary = lang === 'ua' ? s.instagram : s.telegram;
+---
+<BaseLayout lang={lang} title={c.title} description={c.description} canonicalPath={contactPath(lang)} alternatePaths={contactAlternates}>
+  <SiteHeader lang={lang} active="contact" />
+  <main class="utility-page">
+    <section class="contact-hero"><div class="shell contact-grid">
+      <div class="contact-copy"><div class="eyebrow">{c.eyebrow}</div><h1>{c.hero}</h1><p class="lead">{c.lead}</p><p class="contact-note">{c.note}</p></div>
+      <div class="contact-card">
+        <a class="contact-channel primary-channel" href={primary} target="_blank" rel="noopener"><span>{c.primary}</span><strong>↗</strong></a>
+        <a class="contact-channel" href={secondary} target="_blank" rel="noopener"><span>{c.secondary}</span><strong>↗</strong></a>
+        {lang!=='ua' && <a class="contact-channel" href={s.instagram} target="_blank" rel="noopener"><span>{c.social}</span><strong>↗</strong></a>}
+      </div>
+    </div></section>
+    <section class="contact-options"><div class="shell"><div class="eyebrow">{lang==='fr'?'Formats':lang==='ua'?'Формати':'Formats'}</div><div class="quick-links">
+      <a href={groupPath(lang)}><span>{lang==='fr'?'Cours collectifs':lang==='ua'?'Групові тренування':'Group training'}</span><strong>→</strong></a>
+      <a href={individualPath(lang)}><span>1:1</span><strong>→</strong></a>
+      <a href={coursePath(lang)}><span>{lang==='fr'?'Programme 8 semaines':lang==='ua'?'Курс 8 тижнів':'8-week course'}</span><strong>→</strong></a>
+    </div></div></section>
+  </main>
+  <SiteFooter lang={lang} />
+</BaseLayout>
