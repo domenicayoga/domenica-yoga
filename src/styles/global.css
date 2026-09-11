@@ -170,3 +170,54 @@ footer{padding:24px 0 16px}
   .resource-library{padding:54px 0}.utility-resources .resource-img{height:240px}
   .contact-channel{font-size:20px;padding:20px 0}.contact-options{padding:50px 0}
 }
+
+/* v0.6 — mirrored hero imagery, clearer service choice cards, balanced CTA */
+.hero-v04{background:linear-gradient(90deg,rgba(246,243,237,.98) 0%,rgba(246,243,237,.92) 44%,rgba(246,243,237,.22) 72%),url('/assets/hero-v06-mirror.webp') 74% 36%/cover no-repeat}
+.problem-v04 .bg{background:linear-gradient(90deg,rgba(20,27,20,.94),rgba(20,27,20,.70) 50%,rgba(20,27,20,.16)),url('/assets/problem-v06-mirror.webp') center 48%/cover no-repeat}
+
+.services{padding-top:82px;padding-bottom:82px}
+.service-grid{align-items:start}
+.service-choice{display:flex;flex-direction:column;height:100%}
+.service-choice .card-media{height:182px}
+.service-choice .card-body{display:flex;flex-direction:column;gap:12px;flex:1;padding:18px 18px 20px}
+.service-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.service-tag{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#eef1ec;color:#455a43;font-size:11px;letter-spacing:.11em;text-transform:uppercase;font-weight:700}
+.service-choice .service-price{margin-bottom:0}
+.service-choice h3{font-size:24px;margin-bottom:0}
+.service-choice p{margin-bottom:0;font-size:15px;line-height:1.42}
+.service-choice .text-link{margin-top:auto;padding-top:4px}
+
+.final-cta-split{background:var(--paper);color:var(--ink);padding:78px 0}
+.final-cta-split .shell{position:static;padding:0}
+.final-cta-grid{display:grid;grid-template-columns:.96fr 1.04fr;gap:30px;align-items:stretch}
+.final-cta-copy{background:#405340;color:#fff;border-radius:var(--radius);padding:44px 42px;display:flex;flex-direction:column;justify-content:center;min-height:360px}
+.final-cta-copy h2{max-width:14ch;margin-bottom:14px}
+.final-cta-copy p{color:#edf0eb;max-width:31rem;margin-bottom:0}
+.final-cta-copy .actions{margin:26px 0 0}
+.final-cta-copy .btn{border-color:#fff;color:#fff}
+.final-cta-copy .btn.primary{background:#fff;border-color:#fff;color:#263329}
+.final-cta-photo{border-radius:var(--radius);overflow:hidden;min-height:360px;background:#d9ddd8}
+.final-cta-photo img{object-position:center 22%}
+
+@media(max-width:900px){
+  .hero-v04{background:linear-gradient(180deg,rgba(246,243,237,.96) 0%,rgba(246,243,237,.84) 47%,rgba(246,243,237,.18) 79%),url('/assets/hero-v06-mirror.webp') 58% 31%/cover no-repeat}
+  .problem-v04 .bg{background:linear-gradient(180deg,rgba(20,27,20,.92),rgba(20,27,20,.68) 54%,rgba(20,27,20,.22)),url('/assets/problem-v06-mirror.webp') 56% 46%/cover no-repeat}
+  .service-choice .card-media{height:220px}
+  .final-cta-grid{grid-template-columns:1fr;gap:18px}
+  .final-cta-copy,.final-cta-photo{min-height:0}
+  .final-cta-photo{height:420px}
+}
+
+@media(max-width:560px){
+  .hero-v04{background:linear-gradient(180deg,rgba(246,243,237,.97) 0%,rgba(246,243,237,.88) 48%,rgba(246,243,237,.22) 82%),url('/assets/hero-v06-mirror.webp') 57% 26%/cover no-repeat}
+  .problem-v04 .shell{padding-top:54px;padding-bottom:54px}
+  .services{padding-top:56px;padding-bottom:56px}
+  .service-choice .card-media{height:188px}
+  .service-choice .card-body{padding:16px}
+  .service-choice h3{font-size:22px}
+  .final-cta-split{padding:58px 0}
+  .final-cta-copy{padding:30px 22px}
+  .final-cta-copy h2{font-size:36px;max-width:none}
+  .final-cta-photo{height:320px}
+  .final-cta-photo img{object-position:center 18%}
+}

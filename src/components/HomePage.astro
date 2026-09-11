@@ -11,7 +11,13 @@ const contact = primaryContact(lang);
 const serviceImgs = ['/assets/group-v04.webp','/assets/individual-v04.webp','/assets/course-v04.webp'];
 const serviceLinks = [groupPath(lang), individualPath(lang), coursePath(lang)];
 const resourceImgs = ['/assets/resource1-v04.webp','/assets/resource2-v04.webp','/assets/resource3-v04.webp'];
+const serviceTags = {
+  en: ['Live online', '1:1 support', 'Coming soon'],
+  fr: ['En direct', 'Suivi 1:1', 'Bientôt'],
+  ua: ['Наживо онлайн', 'Супровід 1:1', 'Скоро'],
+}[lang];
 const altNames = { en:'Domenica practicing yoga by the Atlantic Ocean', fr:'Domenica pratiquant le yoga au bord de l’océan Atlantique', ua:'Доменіка практикує йогу біля Атлантичного океану' };
+const ctaAlt = { en:'Domenica practicing yoga on the Atlantic coast', fr:'Domenica pratique le yoga sur la côte Atlantique', ua:'Доменіка практикує йогу на узбережжі Атлантики' }[lang];
 ---
 <BaseLayout lang={lang} title={c.title} description={c.description} canonicalPath={`/${lang}/`} alternatePaths={homeAlternates} ogImage="/assets/og-domenica-v04.jpg">
 <SiteHeader lang={lang} active="home" />
@@ -29,7 +35,7 @@ const altNames = { en:'Domenica practicing yoga by the Atlantic Ocean', fr:'Dome
   <section class="problem problem-v04"><div class="bg"></div><div class="shell"><h2>{c.problem.title}</h2><div class="checks">{c.problem.items.map(i=><div class="check">{i}</div>)}</div><p class="problem-line">{c.problem.line}</p></div></section>
 
   <section class="services" id="training"><div class="shell"><div class="eyebrow">{c.services.eyebrow}</div><h2>{c.services.title}</h2><div class="service-grid">
-    {c.services.items.map((s,i)=><article class="card" id={i===2?'course':undefined}><a href={serviceLinks[i]} class="card-media"><img src={serviceImgs[i]} alt={altNames[lang]} loading="lazy" /></a><div class="card-body"><div class="service-price">{s[3]}</div><h3>{s[0]}</h3><p>{s[1]}</p><a class="text-link" href={serviceLinks[i]}>{s[2]}</a></div></article>)}
+    {c.services.items.map((s,i)=><article class="card service-choice" id={i===2?'course':undefined}><a href={serviceLinks[i]} class="card-media"><img src={serviceImgs[i]} alt={altNames[lang]} loading="lazy" /></a><div class="card-body"><div class="service-meta"><span class="service-tag">{serviceTags[i]}</span><div class="service-price">{s[3]}</div></div><h3>{s[0]}</h3><p>{s[1]}</p><a class="text-link" href={serviceLinks[i]}>{s[2]}</a></div></article>)}
   </div></div></section>
 
   <section class="about" id="about"><div class="shell about-grid"><div class="about-photo"><img src="/assets/about-v04.webp" alt={altNames[lang]} loading="lazy" /></div><div class="about-copy"><div class="eyebrow">{c.about.eyebrow}</div><h2>{c.about.title}</h2><p>{c.about.p1}</p><p>{c.about.p2}</p><a class="btn primary" href={aboutPath(lang)}>{c.about.button}</a></div></div></section>
@@ -46,7 +52,7 @@ const altNames = { en:'Domenica practicing yoga by the Atlantic Ocean', fr:'Dome
     <div class="resource-grid resource-grid-balanced">{c.resources.items.map((r,i)=><article class="resource-card"><div class="resource-img"><img class:list={[i===2 && 'mirror-image']} src={resourceImgs[i]} alt={altNames[lang]} loading="lazy" /></div><div class="resource-copy"><h3>{r}</h3><small>{lang==='fr'?'Guide · bientôt':lang==='ua'?'Гайд · скоро':'Guide · coming soon'}</small></div></article>)}</div>
   </div></section>
 
-  <section class="final-cta final-cta-v04" id="contact"><div class="bg"></div><div class="shell"><h2>{c.final.title}</h2><p>{c.final.text}</p><div class="actions"><a class="btn light" href={contact.href} target="_blank" rel="noopener">{c.final.button} — {contact.label} ↗</a><a class="btn light" href={contactPath(lang)}>Contact</a></div></div></section>
+  <section class="final-cta final-cta-split" id="contact"><div class="shell final-cta-grid"><div class="final-cta-copy"><h2>{c.final.title}</h2><p>{c.final.text}</p><div class="actions"><a class="btn primary" href={contact.href} target="_blank" rel="noopener">{c.final.button} — {contact.label} ↗</a><a class="btn" href={contactPath(lang)}>{c.nav.contact}</a></div></div><div class="final-cta-photo"><img src="/assets/cta-v04.webp" alt={ctaAlt} loading="lazy" /></div></div></section>
 </main>
 <SiteFooter lang={lang} />
 </BaseLayout>
