@@ -5,18 +5,32 @@ import SiteFooter from './SiteFooter.astro';
 import type { Lang } from '../data/locales';
 import { utilityPages } from '../data/utilityPages';
 import { resourcesPath, resourcesAlternates, contactPath } from '../data/site';
+import { articles, articlePath, type ArticleKey } from '../data/articles';
 const { lang } = Astro.props as { lang: Lang };
 const r = utilityPages[lang].resources;
-const imgs = ['/assets/resource1-v04.webp','/assets/resource2-v04.webp','/assets/resource3-v04.webp'];
-const alt = lang === 'fr' ? 'Domenica en mouvement au bord de l’océan Atlantique' : lang === 'ua' ? 'Доменіка в русі біля Атлантичного океану' : 'Domenica moving by the Atlantic Ocean';
+const keys: ArticleKey[] = ['updog','neck','mobility'];
+const labels = {
+  en: { read:'Read article', title:'Three practical reads to start with' },
+  fr: { read:'Lire l’article', title:'Trois articles pratiques pour commencer' },
+  ua: { read:'Читати статтю', title:'Три практичні матеріали для старту' }
+}[lang];
 ---
 <BaseLayout lang={lang} title={r.title} description={r.description} canonicalPath={resourcesPath(lang)} alternatePaths={resourcesAlternates}>
   <SiteHeader lang={lang} active="resources" />
   <main class="utility-page">
     <section class="utility-hero"><div class="shell narrow-head"><div class="eyebrow">{r.eyebrow}</div><h1>{r.hero}</h1><p class="lead">{r.lead}</p></div></section>
-    <section class="resource-library"><div class="shell"><div class="resource-grid resource-grid-balanced utility-resources">
-      {r.articles.map((a,i)=><article class="resource-card"><div class="resource-img"><img class:list={[i===2 && 'mirror-image']} src={imgs[i]} alt={alt} loading="lazy" /></div><div class="resource-copy"><span class="mini-label">{lang==='fr'?'Guide':lang==='ua'?'Гайд':'Guide'} 0{i+1}</span><h2>{a[0]}</h2><p>{a[1]}</p></div></article>)}
-    </div><p class="coming-note">{r.coming}</p></div></section>
+    <section class="resource-library"><div class="shell">
+      <div class="resource-library-head"><h2>{labels.title}</h2></div>
+      <div class="resource-grid resource-grid-balanced utility-resources article-library-grid">
+        {keys.map((key,i) => {
+          const a = articles[lang][key];
+          return <article class="resource-card article-library-card">
+            <a class="resource-img" href={articlePath(key,lang)}><img src={a.image} alt={a.alt} loading="lazy" /></a>
+            <div class="resource-copy"><span class="mini-label">0{i+1} · {a.readTime}</span><h2><a href={articlePath(key,lang)}>{a.title}</a></h2><p>{a.description}</p><a class="text-link" href={articlePath(key,lang)}>{labels.read} →</a></div>
+          </article>;
+        })}
+      </div>
+    </div></section>
     <section class="utility-cta"><div class="shell"><h2>{r.cta}</h2><p>{r.ctaText}</p><a class="btn light" href={contactPath(lang)}>{lang==='fr'?'Me contacter':lang==='ua'?'Написати мені':'Contact me'} →</a></div></section>
   </main>
   <SiteFooter lang={lang} />

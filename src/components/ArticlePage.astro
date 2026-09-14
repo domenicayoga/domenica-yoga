@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import type { Lang } from '../data/locales';
+import { articles, articlePath, articleAlternates, type ArticleKey } from '../data/articles';
+import { resourcesPath, groupPath, individualPath } from '../data/site';
+const { lang, article } = Astro.props as { lang: Lang; article: ArticleKey };
+const a = articles[lang][article];
+const canonicalPath = articlePath(article, lang);
+const published = '2026-09-14';
+const labels = {
+  en: { back: 'All resources', by: 'By Domenica', refs: 'Research references', note: 'Educational content — not a diagnosis or medical treatment.' },
+  fr: { back: 'Toutes les ressources', by: 'Par Domenica', refs: 'Références scientifiques', note: 'Contenu éducatif — ne remplace pas un diagnostic ni un traitement médical.' },
+  ua: { back: 'Усі матеріали', by: 'Доменіка', refs: 'Наукові джерела', note: 'Освітній матеріал — не діагностика і не медичне лікування.' }
+}[lang];
+const articleSchema = {
+  '@type':'Article',
+  headline:a.title,
+  description:a.description,
+  image:`https://domenicayoga.com${a.ogImage}`,
+  datePublished:published,
+  dateModified:published,
+  author:{'@id':'https://domenicayoga.com/#domenica'},
+  publisher:{'@type':'Organization',name:'Domenica Yoga',url:'https://domenicayoga.com/'},
+  mainEntityOfPage:`https://domenicayoga.com${canonicalPath}`,
+  inLanguage: lang === 'ua' ? 'uk' : lang
+};
+---
+<BaseLayout lang={lang} title={a.metaTitle} description={a.description} canonicalPath={canonicalPath} alternatePaths={articleAlternates(article)} ogImage={a.ogImage} extraSchema={articleSchema}>
+  <SiteHeader lang={lang} active="resources" />
+  <main class="article-page">
+    <section class="article-hero"><div class="shell article-hero-grid">
+      <div class="article-hero-copy">
+        <a class="article-back" href={resourcesPath(lang)}>← {labels.back}</a>
+        <div class="eyebrow">{a.eyebrow}</div>
+        <h1>{a.title}</h1>
+        <p class="lead">{a.intro}</p>
+        <div class="article-meta"><span>{labels.by}</span><span>·</span><span>{a.readTime}</span></div>
+      </div>
+      <div class="article-hero-image"><img src={a.image} alt={a.alt} /></div>
+    </div></section>
+
+    <section class="article-body"><div class="shell article-layout">
+      <article class="article-content">
+        <div class="article-key-point"><span>01</span><p>{a.keyPoint}</p></div>
+        {a.sections.map((section) => <section class="article-section">
+          {section.heading && <h2>{section.heading}</h2>}
+          {section.paragraphs?.map((p) => <p>{p}</p>)}
+          {section.bullets && <ul>{section.bullets.map((item) => <li>{item}</li>)}</ul>}
+        </section>)}
+        <section class="article-references">
+          <h2>{labels.refs}</h2>
+          <ol>{a.references.map((ref) => <li><a href={ref.href} target="_blank" rel="noopener noreferrer">{ref.title} ↗</a></li>)}</ol>
+          <p class="article-note">{labels.note}</p>
+        </section>
+      </article>
+
+      <aside class="article-side-cta">
+        <div class="eyebrow">Domenica Yoga</div>
+        <h2>{a.ctaTitle}</h2>
+        <p>{a.ctaText}</p>
+        <div class="article-side-actions">
+          <a class="btn primary" href={groupPath(lang)}>{a.ctaPrimary}</a>
+          <a class="btn" href={individualPath(lang)}>{a.ctaSecondary}</a>
+        </div>
+      </aside>
+    </div></section>
+
+    <section class="article-end"><div class="shell"><a class="text-link" href={resourcesPath(lang)}>← {labels.back}</a></div></section>
+  </main>
+  <SiteFooter lang={lang} />
+</BaseLayout>

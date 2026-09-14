@@ -247,3 +247,28 @@ footer{padding:24px 0 16px}
   .legal-section h2{font-size:24px}
   .legal-section p,.legal-section li{font-size:15px}
 }
+
+/* v0.8 — resources, SEO articles, simple start flow */
+.home-start{background:#edf0ea;padding:72px 0}.home-start h2{margin-bottom:28px}.compact-steps{margin-top:0}.compact-steps .step{background:var(--paper);border-radius:var(--radius);padding:24px;min-height:190px}.compact-steps .step h3{font-size:23px}.compact-steps .step p{font-size:15px;margin-bottom:0}
+.resource-card a{color:inherit;text-decoration:none}.resource-copy .text-link{color:#455a43}.resource-library-head{max-width:720px;margin-bottom:34px}.resource-library-head h2{font-size:clamp(34px,4vw,54px)}.article-library-card .resource-img{display:block;height:270px}.article-library-card .resource-copy h2{font-size:25px;line-height:1.05}.article-library-card .resource-copy p{font-size:15px;line-height:1.5}.article-library-card .mini-label{display:block;margin-bottom:12px}
+.article-page{background:var(--bg)}
+.article-hero{padding:128px 0 70px;background:var(--paper)}
+.article-hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:62px;align-items:center}
+.article-hero-copy h1{font-size:clamp(48px,5.3vw,76px);line-height:.96;max-width:770px;margin-top:14px}
+.article-hero-copy .lead{max-width:700px;font-size:20px}
+.article-back{display:inline-block;margin-bottom:28px;color:#667261;text-decoration:none;font-size:14px}.article-back:hover{text-decoration:underline}
+.article-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:26px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.article-hero-image{height:620px;border-radius:var(--radius);overflow:hidden;background:#ddd}.article-hero-image img{width:100%;height:100%;object-fit:cover;object-position:center}
+.article-body{padding:86px 0 52px}.article-layout{display:grid;grid-template-columns:minmax(0,760px) minmax(280px,360px);gap:90px;align-items:start;justify-content:space-between}
+.article-content{font-size:18px;line-height:1.67;color:#2f302c}.article-content p{margin:0 0 22px}.article-content h2{font-size:clamp(30px,3.3vw,42px);line-height:1.02;margin:54px 0 22px}.article-content ul{margin:0 0 26px;padding-left:22px}.article-content li{margin:10px 0}.article-key-point{background:#dfe4dc;border-radius:var(--radius);padding:28px 30px;margin-bottom:46px;display:grid;grid-template-columns:44px 1fr;gap:18px}.article-key-point span{font-size:12px;letter-spacing:.12em;color:#687467}.article-key-point p{margin:0;font-size:21px;line-height:1.4;font-weight:700;color:#1e261f}
+.article-section{border-bottom:1px solid var(--line);padding-bottom:28px}.article-section:last-of-type{border-bottom:0}
+.article-references{margin-top:52px;padding-top:34px;border-top:1px solid var(--line)}.article-references h2{font-size:30px;margin:0 0 20px}.article-references ol{padding-left:22px}.article-references li{margin:12px 0}.article-references a{color:#455a43}.article-note{font-size:13px;color:var(--muted);margin-top:24px!important}
+.article-side-cta{position:sticky;top:110px;background:#263329;color:#fff;border-radius:var(--radius);padding:30px}.article-side-cta .eyebrow{color:#bac5b8}.article-side-cta h2{font-size:34px;line-height:1;margin:12px 0 16px}.article-side-cta p{color:#e5e9e3}.article-side-actions{display:grid;gap:10px;margin-top:24px}.article-side-cta .btn{width:100%;justify-content:center;border-color:#fff;color:#fff}.article-side-cta .btn.primary{background:#fff;color:#263329}
+.article-end{padding:0 0 82px}.article-end .shell{border-top:1px solid var(--line);padding-top:28px}
+
+@media(max-width:900px){
+  .article-hero-grid,.article-layout{grid-template-columns:1fr;gap:38px}.article-hero{padding-top:112px}.article-hero-image{height:520px}.article-side-cta{position:static}.article-library-card .resource-img{height:300px}.home-start{padding:60px 0}
+}
+@media(max-width:560px){
+  .home-start{padding:52px 0}.compact-steps .step{min-height:0}.article-hero{padding:104px 0 46px}.article-hero-copy h1{font-size:43px}.article-hero-copy .lead{font-size:17px}.article-hero-image{height:380px}.article-body{padding:56px 0 38px}.article-content{font-size:16px}.article-content h2{font-size:29px;margin-top:40px}.article-key-point{grid-template-columns:1fr;padding:22px}.article-key-point p{font-size:18px}.article-library-card .resource-img{height:220px}.article-side-cta{padding:24px}.article-side-cta h2{font-size:30px}.article-end{padding-bottom:58px}
+}

@@ -114,7 +114,7 @@ export const products: Record<Lang, Record<ProductKey, Product>> = {
       faq: [['When can I start?','The course is coming soon. Once it is open, you will be able to start at any time.'],['What is the goal after 8 weeks?','More comfortable movement, better body awareness and an easier relationship with everyday activity. For people with lower-back discomfort, the aim is to make walking and movement feel more manageable — without promising a medical cure.'],['Is feedback included?','Yes. If you have a question, you can contact me directly and ask for feedback.']],
       ctaTitle: 'Want me to tell you when the course opens?',
       ctaText: 'Send me a short message and I’ll keep the conversation simple — no form, no mailing-list maze.',
-      ctaPrimary: 'Message on WhatsApp',
+      ctaPrimary: 'Join the waitlist',
       ctaSecondary: 'Telegram',
       note: 'The course is educational movement practice and does not replace medical care when medical assessment is needed.'
     }
@@ -192,7 +192,7 @@ export const products: Record<Lang, Record<ProductKey, Product>> = {
       faq: [['Quand pourrai-je commencer ?','Le programme arrive bientôt. Une fois ouvert, vous pourrez commencer à tout moment.'],['Quel résultat viser après 8 semaines ?','Un mouvement plus confortable, une meilleure perception du corps et une relation plus simple avec l’activité quotidienne. Pour les personnes ayant un inconfort lombaire, l’objectif est notamment de rendre la marche et le mouvement plus faciles — sans promettre une guérison médicale.'],['Les retours sont-ils inclus ?','Oui. Si vous avez une question, vous pouvez m’écrire directement et demander un retour.']],
       ctaTitle: 'Vous voulez être prévenue à l’ouverture ?',
       ctaText: 'Envoyez-moi simplement un message. Pas de formulaire ni de parcours compliqué.',
-      ctaPrimary: 'Écrire sur WhatsApp', ctaSecondary: 'Telegram',
+      ctaPrimary: 'Rejoindre la liste d’attente', ctaSecondary: 'Telegram',
       note: 'Le programme est une pratique éducative du mouvement et ne remplace pas un suivi médical lorsque celui-ci est nécessaire.'
     }
   },
@@ -268,7 +268,7 @@ export const products: Record<Lang, Record<ProductKey, Product>> = {
       faq: [['Коли можна починати?','Курс готується до запуску. Після відкриття доступу можна буде почати будь-коли.'],['Який головний результат після 8 тижнів?','Більш комфортний рух, краще відчуття тіла й простіші прогулянки та повсякденна активність. Якщо є дискомфорт у попереку, наша мета — зробити рух керованішим і комфортнішим, без обіцянки медичного “вилікування”.'],['Чи буде зворотний зв’язок?','Так. Якщо виникне питання, можна написати мені напряму й попросити feedback.']],
       ctaTitle: 'Хочеш, щоб я написала, коли курс відкриється?',
       ctaText: 'Просто напиши мені в Telegram. Без форм і зайвих листів.',
-      ctaPrimary: 'Написати в Telegram', ctaSecondary: 'Instagram',
+      ctaPrimary: 'В лист очікування', ctaSecondary: 'Instagram',
       note: 'Курс є освітньою практикою руху й не замінює медичну допомогу, якщо вона потрібна.'
     }
   }

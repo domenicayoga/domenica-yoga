@@ -1,14 +1,41 @@
-# Domenica Yoga v0.5 update
+# Domenica Yoga — Astro v0.8
 
-Design polish + next step:
-- shorter, more mobile-friendly product hero headlines
-- smaller product hero typography and image height
-- mirrored About closing portrait so Domenica looks toward the copy
-- redesigned “What we build” into three compact outcome cards
-- redesigned Resources into a balanced 3-card grid
-- compact footer
-- new Resources page in EN / FR / UA
-- new Contact page in EN / FR / UA
-- navigation now points to real Resources and Contact pages
+Production-oriented static Astro website for `domenicayoga.com` with EN / FR / UA versions.
 
-Upload the CONTENTS of this folder into the root of the existing GitHub repository and commit.
+## v0.8
+
+- three SEO resource articles in EN / FR / UA
+- direct PubMed research references
+- real Resources library with article links
+- new workday/neck article photography
+- Article structured data, canonical URLs and hreflang alternates
+- compact “How to start” section on the homepage
+- course waitlist CTA with a prefilled WhatsApp message in EN / FR
+- all v0.7 legal/privacy/terms pages retained
+
+## Local preview
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+SITE_URL=https://domenicayoga.com npm run build
+```
+
+## Cloudflare Workers deployment
+
+```bash
+npm install
+SITE_URL=https://domenicayoga.com npm run build
+npx wrangler deploy
+```
+
+For Git-based Workers Builds:
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Environment variable: `SITE_URL=https://domenicayoga.com`
