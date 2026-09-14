@@ -221,3 +221,29 @@ footer{padding:24px 0 16px}
   .final-cta-photo{height:320px}
   .final-cta-photo img{object-position:center 18%}
 }
+
+/* v0.7 — legal, privacy and terms */
+.legal-page{background:var(--paper)}
+.legal-shell{max-width:900px}
+.legal-hero{padding:132px 0 56px;background:#e7e9e2;border-bottom:1px solid var(--line)}
+.legal-hero h1{font-size:clamp(44px,5.2vw,72px);max-width:760px;margin-bottom:18px}
+.legal-hero .lead{max-width:720px}
+.legal-updated{margin-top:22px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.legal-content{padding:62px 0 84px}
+.legal-section{padding:0 0 34px;margin:0 0 34px;border-bottom:1px solid var(--line)}
+.legal-section:last-of-type{margin-bottom:28px}
+.legal-section h2{font-size:28px;letter-spacing:-.03em;margin-bottom:16px}
+.legal-section p{font-size:16px;line-height:1.62;max-width:78ch;color:#45443f}
+.legal-section ul{margin:16px 0 0;padding-left:22px;display:grid;gap:10px;color:#45443f}
+.legal-section li{font-size:16px;line-height:1.5;padding-left:4px}
+.legal-back{margin-top:4px}
+.legal-inline{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.legal-inline a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+@media(max-width:560px){
+  .legal-hero{padding-top:108px;padding-bottom:42px}
+  .legal-hero h1{font-size:40px}
+  .legal-content{padding:46px 0 62px}
+  .legal-section{padding-bottom:26px;margin-bottom:26px}
+  .legal-section h2{font-size:24px}
+  .legal-section p,.legal-section li{font-size:15px}
+}

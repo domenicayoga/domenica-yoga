@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import type { Lang } from '../data/locales';
+import { legalDocs, type LegalDocKey } from '../data/legal';
+import { legalPath, privacyPath, termsPath, legalAlternates, privacyAlternates, termsAlternates } from '../data/site';
+const { lang, doc } = Astro.props as { lang: Lang; doc: LegalDocKey };
+const d = legalDocs[lang][doc];
+const canonicalPath = doc === 'legal' ? legalPath(lang) : doc === 'privacy' ? privacyPath(lang) : termsPath(lang);
+const alternatePaths = doc === 'legal' ? legalAlternates : doc === 'privacy' ? privacyAlternates : termsAlternates;
+const backLabel = lang === 'fr' ? 'Retour au site' : lang === 'ua' ? 'Повернутися на сайт' : 'Back to site';
+---
+<BaseLayout lang={lang} title={d.title} description={d.description} canonicalPath={canonicalPath} alternatePaths={alternatePaths} robots="noindex,follow">
+  <SiteHeader lang={lang} active="home" />
+  <main class="legal-page">
+    <section class="legal-hero"><div class="shell legal-shell"><div class="eyebrow">{d.eyebrow}</div><h1>{d.heading}</h1><p class="lead">{d.intro}</p><div class="legal-updated">{lang==='fr'?'Dernière mise à jour':lang==='ua'?'Оновлено':'Last updated'}: {d.updated}</div></div></section>
+    <section class="legal-content"><div class="shell legal-shell">
+      {d.sections.map((section)=><article class="legal-section"><h2>{section.title}</h2>{section.paragraphs?.map(p=><p>{p}</p>)}{section.bullets && <ul>{section.bullets.map(item=><li>{item}</li>)}</ul>}</article>)}
+      <a class="btn legal-back" href={`/${lang}/`}>← {backLabel}</a>
+    </div></section>
+  </main>
+  <SiteFooter lang={lang} />
+</BaseLayout>

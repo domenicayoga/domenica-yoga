@@ -28,6 +28,10 @@ export const coursePath = (lang: Lang) => ({ en: '/en/8-week-course/', fr: '/fr/
 export const resourcesPath = (lang: Lang) => ({ en: '/en/resources/', fr: '/fr/ressources/', ua: '/ua/materialy/' }[lang]);
 export const contactPath = (lang: Lang) => ({ en: '/en/contact/', fr: '/fr/contact/', ua: '/ua/kontakty/' }[lang]);
 
+export const legalPath = (lang: Lang) => ({ en: '/en/legal-information/', fr: '/fr/informations-legales/', ua: '/ua/yurydychna-informatsiia/' }[lang]);
+export const privacyPath = (lang: Lang) => ({ en: '/en/privacy-policy/', fr: '/fr/politique-confidentialite/', ua: '/ua/polityka-konfidentsiinosti/' }[lang]);
+export const termsPath = (lang: Lang) => ({ en: '/en/terms-of-service/', fr: '/fr/conditions-de-service/', ua: '/ua/umovy-nadannia-posluh/' }[lang]);
+
 export const pathForPage = (lang: Lang, key: PageKey) => ({
   home: homePath(lang), about: aboutPath(lang), group: groupPath(lang), individual: individualPath(lang), course: coursePath(lang), resources: resourcesPath(lang), contact: contactPath(lang)
 }[key]);
@@ -39,6 +43,10 @@ export const individualAlternates = { en: '/en/one-to-one-yoga/', fr: '/fr/seanc
 export const courseAlternates = { en: '/en/8-week-course/', fr: '/fr/programme-8-semaines/', ua: '/ua/kurs-8-tyzhniv/' } as const;
 export const resourcesAlternates = { en: '/en/resources/', fr: '/fr/ressources/', ua: '/ua/materialy/' } as const;
 export const contactAlternates = { en: '/en/contact/', fr: '/fr/contact/', ua: '/ua/kontakty/' } as const;
+
+export const legalAlternates = { en: '/en/legal-information/', fr: '/fr/informations-legales/', ua: '/ua/yurydychna-informatsiia/' } as const;
+export const privacyAlternates = { en: '/en/privacy-policy/', fr: '/fr/politique-confidentialite/', ua: '/ua/polityka-konfidentsiinosti/' } as const;
+export const termsAlternates = { en: '/en/terms-of-service/', fr: '/fr/conditions-de-service/', ua: '/ua/umovy-nadannia-posluh/' } as const;
 
 export const primaryContact = (lang: Lang) => lang === 'ua'
   ? { label: 'Telegram', href: SOCIALS_BY_LANG[lang].telegram }

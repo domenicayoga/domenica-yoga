@@ -12,6 +12,7 @@ interface Props {
   ogImage?: string;
   pageType?: 'website' | 'profile';
   extraSchema?: Record<string, any>;
+  robots?: string;
 }
 const {
   lang,
@@ -21,7 +22,8 @@ const {
   alternatePaths = { en:'/en/', fr:'/fr/', ua:'/ua/' },
   ogImage = '/assets/og-domenica-v04.jpg',
   pageType = 'website',
-  extraSchema
+  extraSchema,
+  robots = 'index,follow,max-image-preview:large'
 } = Astro.props;
 const base = Astro.site ?? new URL('https://domenicayoga.com');
 const canonical = new URL(canonicalPath, base);
@@ -50,7 +52,7 @@ if (extraSchema) graph.push(extraSchema);
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="robots" content={robots} />
   <meta name="theme-color" content="#455a43" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

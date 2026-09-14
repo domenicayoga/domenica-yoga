@@ -1,10 +1,13 @@
 ---
 import type { Lang } from '../data/locales';
 import { content } from '../data/locales';
-import { aboutPath, groupPath, coursePath, resourcesPath, contactPath, socialsFor } from '../data/site';
+import { aboutPath, groupPath, coursePath, resourcesPath, contactPath, legalPath, privacyPath, termsPath, socialsFor } from '../data/site';
 const { lang } = Astro.props as { lang: Lang };
 const c = content[lang];
 const socials = socialsFor(lang);
+const legalLabel = lang === 'fr' ? 'Informations légales' : lang === 'ua' ? 'Юридична інформація' : 'Legal information';
+const privacyLabel = lang === 'fr' ? 'Confidentialité' : lang === 'ua' ? 'Конфіденційність' : 'Privacy';
+const termsLabel = lang === 'fr' ? 'Conditions' : lang === 'ua' ? 'Умови' : 'Terms';
 ---
 <footer>
   <div class="shell compact-footer">
@@ -23,6 +26,6 @@ const socials = socialsFor(lang);
         {(lang==='en'||lang==='fr') && <a href={socials.whatsapp} target="_blank" rel="noopener">WhatsApp ↗</a>}
       </div>
     </div>
-    <div class="footer-bottom compact"><span>© 2026 Domenica Yoga</span><span>{c.footer.legal} · {c.footer.terms}</span><span>EN · FR · UA</span></div>
+    <div class="footer-bottom compact"><span>© 2026 Domenica Yoga</span><span class="legal-inline"><a href={privacyPath(lang)}>{privacyLabel}</a><span>·</span><a href={termsPath(lang)}>{termsLabel}</a><span>·</span><a href={legalPath(lang)}>{legalLabel}</a></span><span>EN · FR · UA</span></div>
   </div>
 </footer>
